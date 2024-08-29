@@ -4,13 +4,21 @@
 <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
 <body style='margin : 0px; overflow: hidden;'>
   <a-scene embedded arjs>
-    <!-- create your content here. just a box for now -->
-
+    <!-- create your content here. just a box for now --> 
     
-    <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
-    
+    <!-- a-box position='0 0.5 0' material='opacity: 0.5;'></a-box> --> 
 
+    <a-assets timeout="30000">
+        <a-asset-item
+            id="sceneGLB"
+            src="https://iotairoberto.github.io/xignuxar/Biomech_Mutant_Skin_1.gltf"
+        ></a-asset-item>
+    </a-assets>
 
+    <a-entity class="environment-settings" gltf-model-plus="#sceneGLB"></a-entity>
+
+    <!--"Buster Drone" (https://skfb.ly/TBnX) by LaVADraGoN is licensed under Creative Commons Attribution-NonCommercial 
+    (http://creativecommons.org/licenses/by-nc/4.0/).-->  
 
     <a-marker-camera preset='hiro'></a-marker-camera>
 
