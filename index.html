@@ -9,23 +9,27 @@
     <!-- a-box position='0 0.5 0' material='opacity: 0.5;'></a-box> --> 
 
     <a-assets timeout="30000">
+        
+        <a-image src="logo-xignux.png"></a-image> 
+        
+        <a-text value="Hello, World!"></a-text> 
+
         <a-asset-item
             id="sceneGLB"
             src="https://iotairoberto.github.io/xignuxar/Biomech_Mutant_Skin_1.gltf"
+            
         ></a-asset-item>
+            <!--"Buster Drone" (https://skfb.ly/TBnX) by LaVADraGoN is licensed under Creative Commons Attribution-NonCommercial 
+        (http://creativecommons.org/licenses/by-nc/4.0/).-->  
     </a-assets>
 
     <a-entity class="environment-settings" gltf-model-plus="#sceneGLB"></a-entity>
 
-    <!--"Buster Drone" (https://skfb.ly/TBnX) by LaVADraGoN is licensed under Creative Commons Attribution-NonCommercial 
-    (http://creativecommons.org/licenses/by-nc/4.0/).-->  
+
 
     <a-marker-camera preset='hiro'></a-marker-camera>
 
-    <!--
-    <a-text value="Hello, World!"></a-text>
-    -->
 
-    <!--a-image src="logo-xignux.png"></a-image> --> 
+
   </a-scene>
 </body>
