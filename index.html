@@ -1,48 +1,25 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <title>My A-Frame Scene</title>
-  <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
-  <script src="https://unpkg.com/super-hands@2.0.2/dist/super-hands.min.js"></script>
-  <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-</head>
+<html lang="en">
 
-<body>
-  <a-scene physics="gravity: 0">
-    <a-assets>
-      <a-mixin id="controller"
-               physics-collider
-               static-body="shape: sphere; sphereRadius: 0.02"
-               super-hands="colliderEvent: collisions;
-                            colliderEventProperty: els;
-                            colliderEndEvent: collisions;
-                            colliderEndEventProperty: clearedEls"
-               collision-filter = "group: hands;
-                                   collidesWith: red, blue;
-                                   collisionForces: false">
-      </a-mixin>
-      <a-mixin id="cube" dynamic-body grabbable
-          geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5">
-      </a-mixin>
-    </a-assets>
-    <!-- settings pulled in from controller mixin above -->
-    <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
-    <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
-    <!-- can be picked up because it collides with the hands group and vice versa -->
-    <a-entity mixin="cube" position="0 1.6 -1" material="color: red" sleepy
-        collision-filter="group: red; collidesWith: default, hands, blue">
-    </a-entity>
-    <!-- even though the controller has blue in its collidesWith list,
-         since the blue cube doesn't also have hands in its list, you cannot
-         pick it up, but you can knock it around with the red cube -->
-    <a-entity mixin="cube" position="0 1 -1" material="color: blue" sleepy
-        collision-filter="group: blue; collidesWith: default, red">
-    </a-entity>
-    <!-- floor entity. 'default' collision group so cubes will bounce off -->
-    <a-box width="20" depth="20" height="0.1" static-body
-           collision-filter="collidesWith: red, blue"
-        material="color: #7BC8A4"></a-box>
+<script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My AR Game</title>
+  <a-scene>
+    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9">
+    </a-box>
+    <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E">
+    </a-sphere>
+    <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D">
+    </a-cylinder>
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4">
+    </a-plane>
+    <a-sky color="#ECECEC"></a-sky>
   </a-scene>
+</head>
+<body>
+  
 </body>
 </html>
