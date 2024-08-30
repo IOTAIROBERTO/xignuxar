@@ -1,31 +1,48 @@
- 
-<script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script> 
-<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> 
-<script src="https://threejs.org/examples/js/deprecated/Geometry.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.js"></script>
-<script src="https://n5ro.github.io/aframe-physics-system/dist/aframe-physics-system.js"></script>
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>My A-Frame Scene</title>
+  <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
+  <script src="https://unpkg.com/super-hands@2.0.2/dist/super-hands.min.js"></script>
+  <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+</head>
 
-<script>
-    AFRAME.registerComponent('foo', {
-      init: function() {
-        this.el.addEventListener('collide', function(e) {
-          console.log('Player has collided with ', e.detail.body.el);
-        });
-      }
-    })
-  </script>
-
-<body style='margin : 0px; overflow: hidden;'>
-    <a-scene physics="debug: true">
-        <a-entity id="rig" movement-controls kinematic-body foo>
-          <a-entity id="camera" camera position="0 1.6 0" look-controls></a-entity>
-        </a-entity>
-        <a-box static-body position="0 0 -3" color="#4CC3D9" width="8" height="5" depth="0.5"></a-box>
-        <a-sphere dynamic-body position="0 1 -2" color="#4CC3D9"></a-sphere>
-        <a-box scale="20 0.01 20" static-body></a-box>
-      </a-scene>
+<body>
+  <a-scene physics="gravity: 0">
+    <a-assets>
+      <a-mixin id="controller"
+               physics-collider
+               static-body="shape: sphere; sphereRadius: 0.02"
+               super-hands="colliderEvent: collisions;
+                            colliderEventProperty: els;
+                            colliderEndEvent: collisions;
+                            colliderEndEventProperty: clearedEls"
+               collision-filter = "group: hands;
+                                   collidesWith: red, blue;
+                                   collisionForces: false">
+      </a-mixin>
+      <a-mixin id="cube" dynamic-body grabbable
+          geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5">
+      </a-mixin>
+    </a-assets>
+    <!-- settings pulled in from controller mixin above -->
+    <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
+    <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" mixin="controller"></a-entity>
+    <!-- can be picked up because it collides with the hands group and vice versa -->
+    <a-entity mixin="cube" position="0 1.6 -1" material="color: red" sleepy
+        collision-filter="group: red; collidesWith: default, hands, blue">
+    </a-entity>
+    <!-- even though the controller has blue in its collidesWith list,
+         since the blue cube doesn't also have hands in its list, you cannot
+         pick it up, but you can knock it around with the red cube -->
+    <a-entity mixin="cube" position="0 1 -1" material="color: blue" sleepy
+        collision-filter="group: blue; collidesWith: default, red">
+    </a-entity>
+    <!-- floor entity. 'default' collision group so cubes will bounce off -->
+    <a-box width="20" depth="20" height="0.1" static-body
+           collision-filter="collidesWith: red, blue"
+        material="color: #7BC8A4"></a-box>
+  </a-scene>
 </body>
-
-
-
-
+</html>
