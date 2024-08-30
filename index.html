@@ -2,12 +2,14 @@
 <html lang="en">
 
 <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+<script src="https://ada.is/basketball-demo/ar-components.js"></script>
+
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My AR Game</title>
-  <a-scene>
+  <a-scene webxr="optionalFeatures: hit-test;">
     <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9">
     </a-box>
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E">
@@ -18,7 +20,7 @@
     </a-plane>
     <a-sky color="#ECECEC"></a-sky>
   </a-scene>
-  
+
   <a-sky color="#ECECEC" hide-in-ar-mode></a-sky>
 
 
