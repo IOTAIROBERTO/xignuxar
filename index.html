@@ -9,11 +9,10 @@
     <script src="https://unpkg.com/aframe-physics-system@1.6.0/dist/aframe-physics-system.min.js"></script>
   </head> 
   <body>  
-    <a-scene physicse webxr="optionalFeatures: hit-test;" inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"> 
+    <a-scene physics webxr="optionalFeatures: hit-test;"> 
       <a-sky color="#ECECEC"></a-sky>   
       <a-box position="-1 4 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" static-body></a-plane> 
-      <a-plane rotation="-90 0 0" width="0.2" height="0.2" src="./arrow.png" material="transparent:true;"></a-plane> 
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" static-body></a-plane>  
     </a-scene>  
   </body> 
 </html> 
