@@ -1,1343 +1,161 @@
-<html class="a-fullscreen"><head>
-    <!-- 0e9d78ffafb138e9639f024f5cfbcd735523bb77 8665de51f057d6f5e00bc4ea3888f42e -->
-    <meta charset="UTF-8">
-
-    <title>Falling Apples (Physics)</title>
-    <meta itemprop="name" content="Falling Apples (Physics)">
-    <meta name="twitter:title" content="Falling Apples (Physics)">
-    <meta property="og:title" content="Falling Apples (Physics)">
-    <meta property="og:site_name" content="Falling Apples (Physics)">
-    <meta name="description" content="Apples hit your head. Always.">
-    <meta itemprop="description" content="Apples hit your head. Always.">
-    <meta property="og:description" content="Apples hit your head. Always.">
-    <meta name="twitter:description" content="Apples hit your head. Always.">
-  
-    <meta name="image" content="https://cdn.8thwall.com/apps/cover/2kfo3too0bc2b0kfo3ki6ldqv6urdhy2896ifb11f3meio5gswbpybzm-preview-1200x630">
-    <meta itemprop="image" content="https://cdn.8thwall.com/apps/cover/2kfo3too0bc2b0kfo3ki6ldqv6urdhy2896ifb11f3meio5gswbpybzm-preview-1200x630">
-    <meta property="og:image" content="https://cdn.8thwall.com/apps/cover/2kfo3too0bc2b0kfo3ki6ldqv6urdhy2896ifb11f3meio5gswbpybzm-preview-1200x630">
-    <meta name="twitter:image" content="https://cdn.8thwall.com/apps/cover/2kfo3too0bc2b0kfo3ki6ldqv6urdhy2896ifb11f3meio5gswbpybzm-preview-1200x630">
-  
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="8thwall:workspace" content="face">
-    <meta name="8thwall:project" content="falling-apples">
-
-    <meta aframe-injected="" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui,viewport-fit=cover"><meta aframe-injected="" name="mobile-web-app-capable" content="yes"><meta aframe-injected="" name="theme-color" content="black"><script async="" crossorigin="use-credentials" src="//apps.8thwall.com/xrweb?appKey=nLVpqMYN88bHS7z8Aa3lU4SyK8macR7ejQWAfVjb2YcyBWo1NPfLuPRmkyoOcURgwNYlBp&amp;s=1"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>XR Spinosaurus</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
     
-    <script crossorigin="anonymous" src="//cdn.8thwall.com/web/aframe/8frame-1.1.0.min.js"></script><style type="text/css" data-href="src/style/aframe.css">html.a-fullscreen{bottom:0;left:0;position:fixed;right:0;top:0}html.a-fullscreen body{height:100%;margin:0;overflow:hidden;padding:0;width:100%}html.a-fullscreen .a-canvas{width:100%!important;height:100%!important;top:0!important;left:0!important;right:0!important;bottom:0!important;position:fixed!important}html:not(.a-fullscreen) .a-enter-ar,html:not(.a-fullscreen) .a-enter-vr{right:5px;bottom:5px}:-webkit-full-screen{background-color:transparent}.a-hidden{display:none!important}.a-canvas{height:100%;left:0;position:absolute;top:0;width:100%}.a-canvas.a-grab-cursor:hover{cursor:grab;cursor:-moz-grab;cursor:-webkit-grab}canvas.a-canvas.a-mouse-cursor-hover:hover{cursor:pointer}.a-inspector-loader{background-color:#ed3160;position:fixed;left:3px;top:3px;padding:6px 10px;color:#fff;text-decoration:none;font-size:12px;font-family:Roboto,sans-serif;text-align:center;z-index:99999;width:204px}@keyframes dots-1{from{opacity:0}25%{opacity:1}}@keyframes dots-2{from{opacity:0}50%{opacity:1}}@keyframes dots-3{from{opacity:0}75%{opacity:1}}@-webkit-keyframes dots-1{from{opacity:0}25%{opacity:1}}@-webkit-keyframes dots-2{from{opacity:0}50%{opacity:1}}@-webkit-keyframes dots-3{from{opacity:0}75%{opacity:1}}.a-inspector-loader .dots span{animation:dots-1 2s infinite steps(1);-webkit-animation:dots-1 2s infinite steps(1)}.a-inspector-loader .dots span:first-child+span{animation-name:dots-2;-webkit-animation-name:dots-2}.a-inspector-loader .dots span:first-child+span+span{animation-name:dots-3;-webkit-animation-name:dots-3}a-scene{display:block;position:relative;height:100%;width:100%}a-assets,a-scene audio,a-scene img,a-scene video{display:none}.a-enter-vr-modal,.a-orientation-modal{font-family:Consolas,Andale Mono,Courier New,monospace}.a-enter-vr-modal a{border-bottom:1px solid #fff;padding:2px 0;text-decoration:none;transition:.1s color ease-in}.a-enter-vr-modal a:hover{background-color:#fff;color:#111;padding:2px 4px;position:relative;left:-4px}.a-enter-ar,.a-enter-vr{font-family:sans-serif,monospace;font-size:13px;width:100%;font-weight:200;line-height:16px;position:absolute;right:20px;bottom:20px}.a-enter-ar{right:80px}.a-enter-vr-button,.a-enter-vr-modal,.a-enter-vr-modal a{color:#fff;user-select:none;outline:0}.a-enter-vr-button{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='62' viewBox='0 0 108 62'%3E%3Ctitle%3Eaframe-vrmode-noborder-reduced-tracking%3C/title%3E%3Cpath d='M68.81,21.56H64.23v8.27h4.58a4.13,4.13,0,0,0,3.1-1.09,4.2,4.2,0,0,0,1-3,4.24,4.24,0,0,0-1-3A4.05,4.05,0,0,0,68.81,21.56Z' fill='%23fff'/%3E%3Cpath d='M96,0H12A12,12,0,0,0,0,12V50A12,12,0,0,0,12,62H96a12,12,0,0,0,12-12V12A12,12,0,0,0,96,0ZM41.9,46H34L24,16h8l6,21.84,6-21.84H52Zm39.29,0H73.44L68.15,35.39H64.23V46H57V16H68.81q5.32,0,8.34,2.37a8,8,0,0,1,3,6.69,9.68,9.68,0,0,1-1.27,5.18,8.9,8.9,0,0,1-4,3.34l6.26,12.11Z' fill='%23fff'/%3E%3C/svg%3E") 50% 50% no-repeat rgba(0,0,0,.35)}.a-enter-ar-button{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='62' viewBox='0 0 108 62'%3E%3Ctitle%3Eaframe-armode-noborder-reduced-tracking%3C/title%3E%3Cpath d='M96,0H12A12,12,0,0,0,0,12V50A12,12,0,0,0,12,62H96a12,12,0,0,0,12-12V12A12,12,0,0,0,96,0Zm8,50a8,8,0,0,1-8,8H12a8,8,0,0,1-8-8V12a8,8,0,0,1,8-8H96a8,8,0,0,1,8,8Z' fill='%23fff'/%3E%3Cpath d='M43.35,39.82H32.51L30.45,46H23.88L35,16h5.73L52,46H45.43Zm-9.17-5h7.5L37.91,23.58Z' fill='%23fff'/%3E%3Cpath d='M68.11,35H63.18V46H57V16H68.15q5.31,0,8.2,2.37a8.18,8.18,0,0,1,2.88,6.7,9.22,9.22,0,0,1-1.33,5.12,9.09,9.09,0,0,1-4,3.26l6.49,12.26V46H73.73Zm-4.93-5h5a5.09,5.09,0,0,0,3.6-1.18,4.21,4.21,0,0,0,1.28-3.27,4.56,4.56,0,0,0-1.2-3.34A5,5,0,0,0,68.15,21h-5Z' fill='%23fff'/%3E%3C/svg%3E") 50% 50% no-repeat rgba(0,0,0,.2)}.a-enter-ar-button,.a-enter-vr-button{background-size:90% 90%;border:0;bottom:0;cursor:pointer;min-width:58px;min-height:34px;padding-right:0;padding-top:0;position:absolute;right:0;transition:background-color .05s ease;-webkit-transition:background-color .05s ease;z-index:9999;border-radius:8px;touch-action:manipulation}.a-enter-ar-button{background-size:100% 90%;margin-right:10px;border-radius:7px}.a-enter-ar-button:active,.a-enter-ar-button:hover,.a-enter-vr-button:active,.a-enter-vr-button:hover{background-color:#ef2d5e}.a-enter-vr-button.resethover{background-color:rgba(0,0,0,.35)}[data-a-enter-vr-no-webvr] .a-enter-vr-button{border-color:#666;opacity:.65}[data-a-enter-vr-no-webvr] .a-enter-vr-button:active,[data-a-enter-vr-no-webvr] .a-enter-vr-button:hover{background-color:rgba(0,0,0,.35);cursor:not-allowed}.a-enter-vr-modal{background-color:#666;border-radius:0;display:none;min-height:32px;margin-right:70px;padding:9px;width:280px;right:2%;position:absolute}.a-enter-vr-modal:after{border-bottom:10px solid transparent;border-left:10px solid #666;border-top:10px solid transparent;display:inline-block;content:'';position:absolute;right:-5px;top:5px;width:0;height:0}.a-enter-vr-modal a,.a-enter-vr-modal p{display:inline}.a-enter-vr-modal p{margin:0}.a-enter-vr-modal p:after{content:' '}[data-a-enter-vr-no-headset].a-enter-vr:hover .a-enter-vr-modal,[data-a-enter-vr-no-webvr].a-enter-vr:hover .a-enter-vr-modal{display:block}.a-orientation-modal{background:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20version%3D%221.1%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2090%2090%22%20enable-background%3D%22new%200%200%2090%2090%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C0%200%2C0%200%2C0%20%22%3E%3C/polygon%3E%3Cg%3E%3Cpath%20d%3D%22M71.545%2C48.145h-31.98V20.743c0-2.627-2.138-4.765-4.765-4.765H18.456c-2.628%2C0-4.767%2C2.138-4.767%2C4.765v42.789%20%20%20c0%2C2.628%2C2.138%2C4.766%2C4.767%2C4.766h5.535v0.959c0%2C2.628%2C2.138%2C4.765%2C4.766%2C4.765h42.788c2.628%2C0%2C4.766-2.137%2C4.766-4.765V52.914%20%20%20C76.311%2C50.284%2C74.173%2C48.145%2C71.545%2C48.145z%20M18.455%2C16.935h16.344c2.1%2C0%2C3.808%2C1.708%2C3.808%2C3.808v27.401H37.25V22.636%20%20%20c0-0.264-0.215-0.478-0.479-0.478H16.482c-0.264%2C0-0.479%2C0.214-0.479%2C0.478v36.585c0%2C0.264%2C0.215%2C0.478%2C0.479%2C0.478h7.507v7.644%20%20%20h-5.534c-2.101%2C0-3.81-1.709-3.81-3.81V20.743C14.645%2C18.643%2C16.354%2C16.935%2C18.455%2C16.935z%20M16.96%2C23.116h19.331v25.031h-7.535%20%20%20c-2.628%2C0-4.766%2C2.139-4.766%2C4.768v5.828h-7.03V23.116z%20M71.545%2C73.064H28.757c-2.101%2C0-3.81-1.708-3.81-3.808V52.914%20%20%20c0-2.102%2C1.709-3.812%2C3.81-3.812h42.788c2.1%2C0%2C3.809%2C1.71%2C3.809%2C3.812v16.343C75.354%2C71.356%2C73.645%2C73.064%2C71.545%2C73.064z%22%3E%3C/path%3E%3Cpath%20d%3D%22M28.919%2C58.424c-1.466%2C0-2.659%2C1.193-2.659%2C2.66c0%2C1.466%2C1.193%2C2.658%2C2.659%2C2.658c1.468%2C0%2C2.662-1.192%2C2.662-2.658%20%20%20C31.581%2C59.617%2C30.387%2C58.424%2C28.919%2C58.424z%20M28.919%2C62.786c-0.939%2C0-1.703-0.764-1.703-1.702c0-0.939%2C0.764-1.704%2C1.703-1.704%20%20%20c0.94%2C0%2C1.705%2C0.765%2C1.705%2C1.704C30.623%2C62.022%2C29.858%2C62.786%2C28.919%2C62.786z%22%3E%3C/path%3E%3Cpath%20d%3D%22M69.654%2C50.461H33.069c-0.264%2C0-0.479%2C0.215-0.479%2C0.479v20.288c0%2C0.264%2C0.215%2C0.478%2C0.479%2C0.478h36.585%20%20%20c0.263%2C0%2C0.477-0.214%2C0.477-0.478V50.939C70.131%2C50.676%2C69.917%2C50.461%2C69.654%2C50.461z%20M69.174%2C51.417V70.75H33.548V51.417H69.174z%22%3E%3C/path%3E%3Cpath%20d%3D%22M45.201%2C30.296c6.651%2C0%2C12.233%2C5.351%2C12.551%2C11.977l-3.033-2.638c-0.193-0.165-0.507-0.142-0.675%2C0.048%20%20%20c-0.174%2C0.198-0.153%2C0.501%2C0.045%2C0.676l3.883%2C3.375c0.09%2C0.075%2C0.198%2C0.115%2C0.312%2C0.115c0.141%2C0%2C0.273-0.061%2C0.362-0.166%20%20%20l3.371-3.877c0.173-0.2%2C0.151-0.502-0.047-0.675c-0.194-0.166-0.508-0.144-0.676%2C0.048l-2.592%2C2.979%20%20%20c-0.18-3.417-1.629-6.605-4.099-9.001c-2.538-2.461-5.877-3.817-9.404-3.817c-0.264%2C0-0.479%2C0.215-0.479%2C0.479%20%20%20C44.72%2C30.083%2C44.936%2C30.296%2C45.201%2C30.296z%22%3E%3C/path%3E%3C/g%3E%3C/svg%3E) center/50% 50% no-repeat rgba(244,244,244,1);bottom:0;font-size:14px;font-weight:600;left:0;line-height:20px;right:0;position:fixed;top:0;z-index:9999999}.a-orientation-modal:after{color:#666;content:"Insert phone into Cardboard holder.";display:block;position:absolute;text-align:center;top:70%;transform:translateY(-70%);width:100%}.a-orientation-modal button{background:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20version%3D%221.1%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%20100%20100%22%20enable-background%3D%22new%200%200%20100%20100%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M55.209%2C50l17.803-17.803c1.416-1.416%2C1.416-3.713%2C0-5.129c-1.416-1.417-3.713-1.417-5.129%2C0L50.08%2C44.872%20%20L32.278%2C27.069c-1.416-1.417-3.714-1.417-5.129%2C0c-1.417%2C1.416-1.417%2C3.713%2C0%2C5.129L44.951%2C50L27.149%2C67.803%20%20c-1.417%2C1.416-1.417%2C3.713%2C0%2C5.129c0.708%2C0.708%2C1.636%2C1.062%2C2.564%2C1.062c0.928%2C0%2C1.856-0.354%2C2.564-1.062L50.08%2C55.13l17.803%2C17.802%20%20c0.708%2C0.708%2C1.637%2C1.062%2C2.564%2C1.062s1.856-0.354%2C2.564-1.062c1.416-1.416%2C1.416-3.713%2C0-5.129L55.209%2C50z%22%3E%3C/path%3E%3C/svg%3E) no-repeat;border:none;height:50px;text-indent:-9999px;width:50px}.a-loader-title{background-color:rgba(0,0,0,.6);font-family:sans-serif,monospace;text-align:center;font-size:20px;height:50px;font-weight:300;line-height:50px;position:absolute;right:0;left:0;top:0;color:#fff}.a-modal{background:0 0/50% 50% rgba(0,0,0,.6);bottom:0;font-size:14px;font-weight:600;left:0;line-height:20px;right:0;position:fixed;top:0;z-index:9999999}.a-dialog{position:relative;left:50%;top:50%;transform:translate(-50%,-50%);z-index:199995;width:300px;height:200px;background-size:contain;background-color:#fff;font-family:sans-serif,monospace;font-size:20px;border-radius:3px;padding:6px}.a-dialog-text-container{width:100%;height:70%;align-self:flex-start;display:flex;justify-content:center;align-content:center;flex-direction:column}.a-dialog-text{display:inline-block;font-weight:400;font-size:14pt;margin:8px}.a-dialog-buttons-container{display:inline-flex;align-self:flex-end;width:100%;height:30%}.a-dialog-button{cursor:pointer;align-self:center;opacity:.9;height:80%;width:50%;font-size:12pt;margin:4px;border-radius:2px;text-align:center;border:none;display:inline-block;-webkit-transition:all .25s ease-in-out;transition:all .25s ease-in-out;box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.2);user-select:none}.a-dialog-permission-button:hover{box-shadow:0 7px 14px rgba(0,0,0,.2),0 2px 2px rgba(0,0,0,.2)}.a-dialog-allow-button{background-color:#00ceff}.a-dialog-deny-button{background-color:#ff005b}.a-dialog-ok-button{background-color:#00ceff;width:100%}</style><style type="text/css" data-href="src/style/rStats.css">.rs-base{background-color:#333;color:#fafafa;border-radius:0;font:10px monospace;left:5px;line-height:1em;opacity:.85;overflow:hidden;padding:10px;position:fixed;top:5px;width:300px;z-index:10000}.rs-base div.hidden{display:none}.rs-base h1{color:#fff;cursor:pointer;font-size:1.4em;font-weight:300;margin:0 0 5px;padding:0}.rs-group{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-direction:column-reverse;flex-direction:column-reverse;margin-bottom:5px}.rs-group:last-child{margin-bottom:0}.rs-counter-base{align-items:center;display:-webkit-box;display:-webkit-flex;display:flex;height:10px;-webkit-justify-content:space-between;justify-content:space-between;margin:2px 0}.rs-counter-base.alarm{color:#b70000;text-shadow:0 0 0 #b70000,0 0 1px #fff,0 0 1px #fff,0 0 2px #fff,0 0 2px #fff,0 0 3px #fff,0 0 3px #fff,0 0 4px #fff,0 0 4px #fff}.rs-counter-id{font-weight:300;-webkit-box-ordinal-group:0;-webkit-order:0;order:0;width:54px}.rs-counter-value{font-weight:300;-webkit-box-ordinal-group:1;-webkit-order:1;order:1;text-align:right;width:35px}.rs-canvas{-webkit-box-ordinal-group:2;-webkit-order:2;order:2}@media (min-width:480px){.rs-base{left:20px;top:20px}}</style>
-    <script crossorigin="anonymous" src="//cdn.8thwall.com/web/xrextras/xrextras.js?s=1"></script><style>@font-face {
-font-family: 'Raleway-Regular';
-src: url('//cdn.8thwall.com/web/fonts/raleway-regular.woff') format('woff'), /* Modern Browsers */
-     url('//cdn.8thwall.com/web/fonts/raleway-regular.ttf')  format('truetype') /* Safari, Android, iOS */
-}
-
-@font-face {
-font-family: 'Raleway-Bold';
-src: url('//cdn.8thwall.com/web/fonts/raleway-bold.woff') format('woff'), /* Modern Browsers */
-     url('//cdn.8thwall.com/web/fonts/raleway-bold.ttf')  format('truetype') /* Safari, Android, iOS */
-}
-
-@font-face {
-font-family: 'Varela-Round';
-src: url('//cdn.8thwall.com/web/fonts/VarelaRound-Regular.woff') format('woff'), /* Modern Browsers */
-     url('//cdn.8thwall.com/web/fonts/VarelaRound-Regular.ttf')  format('truetype') /* Safari, Android, iOS */
-}
-
-@font-face {
-font-family: 'Nunito';
-src: url('//cdn.8thwall.com/web/fonts/Nunito-Regular.woff') format('woff'), /* Modern Browsers */
-     url('//cdn.8thwall.com/web/fonts/Nunito-Regular.ttf')  format('truetype') /* Safari, Android, iOS */
-}
-
-@font-face {
-font-family: 'Nunito-SemiBold';
-src: url('//cdn.8thwall.com/web/fonts/Nunito-SemiBold.woff') format('woff'), /* Modern Browsers */
-     url('//cdn.8thwall.com/web/fonts/Nunito-SemiBold.ttf')  format('truetype') /* Safari, Android, iOS */
-}</style><style>#almostthereContainer {
-z-index: 820;
-background-color: #101118;
-}
-
-.xrextras-old-style #almostthereContainer {
-background-color: #FFFFFF;
-}
-
-#qrcode {
-background-color: white;
-margin: 0 auto;
-width: 250px;
-height: 250px;
-padding: 8px;
-border-radius: 20px;
-box-sizing: content-box;
-}
-
-#qrcode>svg {
-width: 100%;
-display: block;
-}
-
-.arrow-top-corner {
-position: fixed;
-top: 3%;
-right: 1.5%;
-height: 36px;
-}
-
-.arrow-top-close {
-position: fixed;
-top: 3%;
-right: 12.5%;
-height: 36px;
-}
-
-.arrow-bottom-close {
-position: fixed;
-bottom: 3%;
-right: 15%;
-height: 36px;
--moz-transform: scale(-1, -1);
--o-transform: scale(-1, -1);
--webkit-transform: scale(-1, -1);
-transform: scale(-1, -1);
-}
-
-.arrow-bottom-corner {
-position: fixed;
-bottom: 3%;
-right: 2%;
-height: 36px;
--moz-transform: scale(-1, -1);
--o-transform: scale(-1, -1);
--webkit-transform: scale(-1, -1);
-transform: scale(-1, -1);
-}
-
-.app-header-img {
-position: fixed;
-width: 100vw;
-max-width: 500px;
-left: 50%;
-top: 50%;
-transform: translateX(-50%) translateY(-50%);
-}
-
-.app-header-img.unknown {
-position: fixed;
-width: 100vw;
-max-width: 500px;
-left: 50%;
-top: 43%;
-transform: translateX(-50%) translateY(-57%);
-}
-
-.poweredby-img {
-width: 35vw;
-max-width: 200px;
-position: fixed;
-bottom: 2%;
-left: 50%;
-transform: translateX(-50%);
-}
-
-.poweredby-img.desktop {
-width: 200px;
-bottom: 5%;
-}
-
-.bottombarbump .poweredby-img{
-bottom: 15%;
-}
-
-#error_msg_open_in_safari {
-background-color: #101118;
-}
-
-.xrextras-old-style #error_msg_open_in_safari {
-background-color: white;
-}
-
-.open-header-top {
-font-family: 'Nunito-SemiBold', sans-serif;
-color: white;
-letter-spacing: .37;
-font-size: 1em;
-position: fixed;
-top: 0%;
-left: 50%;
-transform: translateX(-50%);
-}
-
-.xrextras-old-style .open-header-top {
-color: #323232;
-}
-
-.open-header-bottom {
-font-family: 'Nunito-SemiBold', sans-serif;
-color: white;
-letter-spacing: .37;
-font-size: 1em;
-position: fixed;
-top: 10%;
-left: 50%;
-transform: translateX(-50%);
-}
-
-.xrextras-old-style .open-header-bottom {
-color: #323232;
-}
-
-.open-header-unknown {
-font-family: 'Nunito-SemiBold', sans-serif;
-color: white;
-letter-spacing: .37;
-font-size: 1em;
-position: fixed;
-top: 5%;
-left: 50%;
-transform: translateX(-50%);
-}
-
-.xrextras-old-style .open-header-unknown {
-color: #323232;
-}
-
-.desktop-message {
-font-family: 'Nunito-SemiBold', sans-serif;
-margin: 0 auto;
-margin-top: 1vh;
-width: 500px;
-color: white;
-font-size: 24pt;
-line-height: 1em;
-}
-
-.xrextras-old-style .desktop-message {
-color: #323232;
-}
-
-.desktop-hint {
-font-family: 'Nunito', sans-serif;
-font-size: 14pt;
-color: #fff;
-line-height: 2em;
-margin-top: 2vh;
-letter-spacing: .37;
-}
-
-.xrextras-old-style .desktop-hint {
-color: #323232;
-}
-
-.copy-link-btn {
-position: fixed;
-bottom: 20%;
-left: 50%;
-transform: translateX(-50%);
-font-family: 'Nunito-SemiBold', sans-serif;
-font-weight: 800;
-font-size: 1.1em;
-text-align: center;
-color: white;
-text-decoration: none;
-border: none;
-background-color: #AD50FF;
-padding: 6px 13px;
-border-radius: 10px;
-}
-
-.xrextras-old-style .copy-link-btn {
-background-color: #7611B7;
-}
-
-.error-copy-link-copied {
-background-color: #8083A2 !important;
-}
-
-.safari-hero-image {
-max-height: 30vmin;
-}
-</style><style>#loadingContainer {
-z-index: 800;
-font-family: 'Nunito-SemiBold', sans-serif;
-}
-
-#loadBackground {
-z-index: 10;
-background-color: #101118;
-pointer-events: auto;
-}
-
-.xrextras-old-style #loadBackground {
-background-color: white;
-}
-
-#requestingCameraPermissions {
-z-index: 11;
-position: absolute;
-top: 0;
-width: 100vw;
-text-align: center;
-color: white;
-font-size: 1.8em;
-font-family: 'Nunito-SemiBold', sans-serif;
-background-color: #464766;
-padding-top: 3vh;
-padding-bottom: 1.75vh;
-}
-
-#requestingCameraIcon {
-display: block;
-margin: 0 auto;
-margin-bottom: 2vh;
-height: 5.5vh;
-}
-
-#loadImage {
-position: absolute;
-margin-top: -2.5em;
-margin-left: -2.5em;
-top: 50%;
-left: 50%;
-height: 5em;
-width: 5em;
-transform: translate(-50%, -50%);
-}
-
-/* camera and micrphone permission related styles */
-#cameraPermissionsErrorApple, #microphonePermissionsErrorApple {
-background-color: #101118;
-}
-
-.xrextras-old-style #cameraPermissionsErrorApple, .xrextras-old-style #microphonePermissionsErrorApple {
-background-color: white;
-}
-
-#cameraPermissionsErrorAppleMessage, #microphonePermissionsErrorAppleMessage {
-font-size: 1.75em;
-text-align: center;
-max-width: 90vw;
-margin-top: 5vh;
-margin-left: auto;
-margin-right: auto;
-color: white;
-}
-
-.xrextras-old-style #cameraPermissionsErrorAppleMessage, .xrextras-old-style #microphonePermissionsErrorAppleMessage {
-color: #323232;
-}
-
-.permissionIconIos {
-display: block;
-margin: 0 auto;
-margin-top: 17vh;
-text-align: center;
-}
-.permissionIconIos img {
-height: 20vw;
-}
-.permissionIconIos img + img {
-margin-left: 10vw;
-}
-
-.bottom-message {
-color: white;
-padding: 0 5vw;
-position: absolute;
-bottom: 10vh;
-text-align: center;
-font-size: 1.25em;
-}
-
-#cameraPermissionsErrorAndroid, #microphonePermissionsErrorAndroid {
-padding: 2vh 0;
-display: flex;
-flex-direction: column;
-pointer-events: auto;
-justify-content: space-around;
-align-items: center;
-background-color: #101118;
-}
-
-.xrextras-old-style #cameraPermissionsErrorAndroid, .xrextras-old-style #microphonePermissionsErrorAndroid {
-background-color: white;
-}
-
-/* device motion permission related styles */
-
-#deviceMotionErrorApple {
-padding: 3vh 2vh;
-display: flex;
-flex-direction: column;
-pointer-events: auto;
-justify-content: space-around;
-align-items: center;
-background-color: #101118;
-color: white;
-}
-
-.xrextras-old-style #deviceMotionErrorApple {
-color: #2D2E43;
-background-color: white;
-}
-
-#linkOutViewAndroid, #copyLinkViewAndroid {
-background-color: #101118;
-}
-
-.xrextras-old-style #linkOutViewAndroid, .xrextras-old-style #copyLinkViewAndroid {
-background-color: #fff;
-}
-
-.permission-error {
-padding: 3vh 5vh;
-font-size: 3.5vh;
-color: #fff;
-background-color: #101118;
-}
-
-.xrextras-old-style .permission-error {
-color: #323232;
-background-color: white;
-}
-
-.permission-error>h1 {
-font-size: 1.3em;
-}
-
-.main-button {
-border: none;
-outline: none;
-background-color: #AD50FF;
-color: white;
-font-size: 2.5vh;
-display: block;
-margin-top: 2em;
-padding: 0.5em 1em;
-border-radius: 0.5em;
-}
-
-.xrextras-old-style .main-button {
-background-color: #7611B7;
-}
-
-.start-ar-button {
-position: fixed;
-bottom: 25%;
-left: 50%;
-transform: translateX(-50%);
-font-family: 'Nunito-SemiBold', sans-serif;
-font-weight: 800;
-font-size: 1.5em;
-text-align: center;
-color: white;
-text-decoration: none;
-border: none;
-background-color: #AD50FF;
-padding: 6px 13px;
-border-radius: 10px;
-}
-
-.xrextras-old-style .start-ar-button {
-background-color: #7611b7;
-}
-
-.permissionIcon {
-overflow: hidden;
-flex: 0 0 auto;
-margin-bottom: 2vh;
-}
-
-.permissionIcon img {
-display: block;
-margin: 0 auto;
-height: 5vh;
-}
-
-#cameraSelectionWorldTrackingError {
-z-index: 999;
-position: absolute;
-top: 0;
-width: 100vw;
-text-align: center;
-color: black;
-font-size: 3.7vh;
-background-color: white;
-padding: 3vh 0;
-}
-
-.loading-error-header {
-font-size: 3.5vh;
-flex: 0 0 auto;
-color: white;
-}
-
-.xrextras-old-style .loading-error-header {
-color: #323232;
-}
-
-.loading-error-footer {
-font-size: 3vh;
-line-height: 5.5vh;
-flex: 0 0 auto;
-text-align: center;
-width: 80vmin;
-color: white;
-}
-
-.xrextras-old-style .loading-error-footer {
-color: #323232;
-}
-
-.loading-error-footer img {
-display: block;
-height: 5vh;
-margin: 0 auto;
-margin-bottom: 2vh;
-}
-
-.loading-error-instructions {
-font-family: 'Nunito', sans-serif;
-color: #fff;
-font-size: 2.5vh;
-list-style: none;
-margin-left: 1em;
-counter-reset: line;
-flex: 0 0 auto;
-}
-
-.xrextras-old-style .loading-error-instructions {
-color: #2D2E43;
-}
-
-.loading-error-instructions>li {
-position: relative;
-margin-bottom: 4.5vh;
-}
-
-.loading-error-instructions>li>img {
-max-height: 3vh;
-vertical-align: middle;
-margin: 0 .5vh;
-}
-
-.loading-error-instructions>li:before {
-font-family: 'Nunito', sans-serif;
-position: absolute;
-width: 40px;
-height: 40px;
-border-radius: 3vh;
-color: #fff;
-background-color: #464766;
-text-align: center;
-left: -8vh;
-top: -1vh;
-font-size: 2.5vh;
-line-height: 5.5vh;
-counter-increment: line;
-content: counter(line);
-}
-
-.xrextras-old-style .loading-error-instructions>li:before {
-background-color: rgba(218, 209, 228, 128);
-}
-
-.highlight {
-color: white;
-font-family: 'Nunito-SemiBold', sans-serif;
-font-weight: 800;
-}
-
-.xrextras-old-style .highlight {
-color: #7611B7;
-}
-
-.camera-instruction-block {
-display: inline-block;
-background-color: #8083A2;
-padding: 1vh;
-}
-
-.xrextras-old-style .camera-instruction-block {
-background-color: #EBEBEB;
-}
-
-.camera-instruction-button {
-display: inline-block;
-padding: 1vh;
-background-color: #359AFF;
-color: white;
-font-size: 2vh;
-box-shadow: 0 .125vh .25vh rgba(0, 0, 0, 0.5);
-}
-
-body:not(.xrextras-old-style) .prompt-box-8w {
-background-color: #3A3B55;
-color: #fff;
-text-align: center;
-}
-
-body:not(.xrextras-old-style) .prompt-button-8w {
-background-color: #8083A2;
-border-radius: 10px;
-}
-
-body:not(.xrextras-old-style) .button-primary-8w {
-background-color: #AD50FF;
-}
-
-.fade-out {
-animation: fade-out 0.3s linear forwards;
-}
-
-@keyframes fade-out {
-0% {
-  opacity: 1;
-}
-100% {
-  opacity: 0;
-}
-}
-
-.spin {
-animation: spin 1.1s cubic-bezier(0.785, 0.135, 0.150, 0.860) infinite both;
-}
-
-@keyframes spin {
-0% {
-  transform: rotate(0);
-}
-100% {
-  transform: rotate(360deg);
-}
-}
-
-.scale {
--webkit-animation: scale 1s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite alternate-reverse both;
-animation: scale 1s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite alternate-reverse both;
-}
-
-@keyframes scale {
-0% {
-  -webkit-transform: scale(0.5);
-  transform: scale(0.5);
-}
-100% {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-}
-
-.pulse {
--webkit-animation: pulse 1s ease-in-out infinite both;
-animation: pulse 1s ease-in-out infinite both;
-}
-
-@keyframes pulse {
-0% {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-50% {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-100% {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-}
-</style><style>.pwa-installer-root {
-position: fixed;
-z-index: 1300;
-right: 0;
-bottom: 0;
-top: 0;
-left: 0;
-font-family: Nunito,Roboto,Arial,sans-serif;
-font-size: 14px;
-line-height: 1.43;
-}
-
-.pwa-installer-root .backdrop {
-right: 0;
-bottom: 0;
-top: 0;
-left: 0;
-display: flex;
-z-index: -1;
-position: fixed;
-align-items: center;
-touch-action: none;
-justify-content: center;
-background-color: rgba(0, 0, 0, 0.5);
--webkit-tap-highlight-color: transparent;
-}
-
-.pwa-installer-root .drawer {
-overflow-y: visible;
-top: auto;
-left: 0;
-right: 0;
-bottom: 0;
-height: auto;
-max-height: 100%;
-flex: 1 0 auto;
-display: flex;
-outline: 0;
-z-index: 1200;
-position: fixed;
-flex-direction: column;
--webkit-overflow-scrolling: touch;
-box-shadow: 0px 8px 10px -5px rgba(0,0,0,0.2),
-  0px 16px 24px 2px rgba(0,0,0,0.14),
-  0px 6px 30px 5px rgba(0,0,0,0.12);
-color: rgba(0, 0, 0, 0.87);
-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-background-color: #ffffff;
-}
-
-.pwa-installer-root .drawer .container {
-display: inline-block;
-}
-
-.pwa-installer-root .drawer .container .content {
-display: flex;
-padding: 2em;
-align-items: center;
-flex-direction: column;
-}
-
-.pwa-installer-root .drawer .container .content .close-button {
-padding: 0;
-position: absolute;
-align-self: flex-end;
-border: 0;
-cursor: pointer;
-}
-
-.pwa-installer-root .drawer .container .content .close-button .close::before{
-position: absolute;
-content: ' ';
-height: 2em;
-width: 2px;
-background-color: #333;
-}
-
-.pwa-installer-root .drawer .container .content .close-button .close::after{
-position: absolute;
-content: ' ';
-height: 2em;
-width: 2px;
-background-color: #333;
-}
-
-.close::before {
-transform: rotate(45deg);
-}
-
-.pwa-installer-root .drawer .container .content .close-button .close::after {
-transform: rotate(-45deg);
-}
-
-.pwa-installer-root .drawer .container .content .icon-container {
-filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.3));
-}
-
-.pwa-installer-root .drawer .container .content .icon-container .icon-preview {
-width: 6em;
-height: 6em;
-margin-top: -5em;
-clip-path: inset(6.36% round 17.543%);
--webkit-clip-path: inset(6.36% round 17.543%);
-object-fit: fill;
-}
-
-.pwa-installer-root .drawer .container .content .pwa-name {
-margin-top: 0em;
-font-weight: 700;
-margin-bottom: 1em;
-}
-
-.pwa-installer-root .drawer .container .content .install-title {
-margin: 0em;
-font-weight: bold;
-}
-
-.pwa-installer-root .drawer .container .content .install-subtitle {
-margin: 0em;
-}
-
-.pwa-installer-root .drawer .container .content .install-action-text {
-margin: 0em;
-}
-
-.pwa-installer-root .drawer .container .content .install-action-text svg {
-fill: currentColor;
-width: 1em;
-height: 1em;
-display: inline-block;
-font-size: 1.5rem;
-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-flex-shrink: 0;
-user-select: none;
-}
-
-.pwa-installer-root .drawer .container .content .install-button {
-color: #FFFFFF;
-margin-top: 1em;
-background-color: #7611B6;
-box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),
-  0px 2px 2px 0px rgba(0,0,0,0.14),
-  0px 1px 5px 0px rgba(0,0,0,0.12);
-padding: 6px 16px;
-font-size: 0.875rem;
-min-width: 64px;
-box-sizing: border-box;
-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-  box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-  border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-font-weight: 500;
-border-radius: 4px;
-text-transform: uppercase;
-font-family: Nunito,Roboto,Arial,sans-serif;
-border: 0;
-cursor: pointer;
-display: inline-flex;
-outline: 0;
-position: relative;
-align-items: center;
-user-select: none;
-vertical-align: center;
-text-decoration: none;
--webkit-appearance: none;
--webkit-tap-highlight-color: transparent;
-}
-</style><style>#runtimeErrorContainer {
-z-index: 800;
-background-color: #101118;
-}
-
-.xrextras-old-style #runtimeErrorContainer {
-background-color: #FFFFFF;
-}
-
-.floater {
--webkit-filter: drop-shadow(5px 5px 5px #222);
-}
-</style><style>/* Preview Container */
-
-#previewContainer {
-display: flex;
-flex-direction: column;
-align-items: stretch;
-justify-content: space-between;
-z-index: 30;
-opacity: 0.0;
-position: fixed;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-box-sizing: border-box;
-pointer-events: none;
-}
-
-#previewContainer.fade-in {
-transition: 0.5s opacity;
-opacity: 1;
-}
-
-#videoPreview, #imagePreview {
-display: none;
-max-width: 90vw;
-max-height: calc(88vh - 12vmin);
-border-radius: 10px;
-border: 1vmin solid white;
-background-color: white;
-}
-
-.icon-button img, #videoPreview, #imagePreview, .finalize-container {
-filter: drop-shadow(0 0 2px #333);
-}
-
-.video-preview #videoPreview {
-display: block;
-}
-
-.image-preview #imagePreview {
-display: block;
-}
-
-/* Top Bar */
-
-.top-bar {
-position: relative;
-flex: 1 0 0;
-}
-
-.preview-box {
-position: absolute;
-left: 50%;
-top: 50%;
-transform: translate(-50%, -50%);
-}
-
-.icon-button {
-padding: 4vmin;
-user-select: none;
--webkit-user-select: none;
-cursor: pointer;
-}
-
-.icon-button img {
-display: block;
-height: 7.5vmin;
-}
-
-#toggleMuteButton, #closePreviewButton {
-position: absolute;
-z-index: 1;
-}
-
-#toggleMuteButton {
-left: 0;
-bottom: 0;
-display: none;
-}
-
-.video-preview #toggleMuteButton {
-display: block;
-}
-
-#closePreviewButton {
-top: 0;
-right: 0;
-}
-
-/* Bottom Bar */
-
-.bottom-bar {
-display: flex;
-justify-content: center;
-position: relative;
-margin: 0 5vmin;
-}
-
-.style-reset {
-background: none;
-border: none;
-outline: none;
-box-shadow: none !important;
--webkit-touch-callout: none;
--webkit-user-select: none;
-user-select: none;
--webkit-tap-highlight-color: transparent;
-}
-
-.style-reset:focus { outline:0; }
-
-#actionButton {
-padding: 0.3em 0.5em 0.3em 0.5em;
-user-select: none;
--webkit-user-select: none;
-font-family: 'Nunito', sans-serif;
-text-align: right;
-color: white;
-background-color: #AD50FF;
-border-radius: 0.5em;
-font-size: 5vmin;
-min-width: 3.25em;
-}
-
-.show-with-download-button {
-position: absolute;
-top: 50%;
-right: 0;
-transform: translateY(-50%);
-}
-
-.show-alone {
-margin-bottom: 2vmin;
-}
-
-#actionButton img {
-height: 0.8em;
-margin-left: 0.4em;
-}
-
-.disabled-download.video-preview #openSafariText {
-display: block;
-font-size: 5vmin;
-}
-
-.disabled-download.image-preview #tapAndHoldText {
-display: block;
-font-size: 7.5vmin;
-}
-
-#openSafariText, #tapAndHoldText {
-display: none;
-padding: 0.3em 0.5em 0.3em 0.5em;
-user-select: none;
--webkit-user-select: none;
-font-family: 'Nunito', sans-serif;
-text-align: center;
-color: white;
-filter: drop-shadow(0px 1px 2px #333);
-}
-
-#previewContainer:not(.downloaded) .show-after-download {
-display: none;
-}
-
-.finalize-container {
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
-right: calc(50% + 13vmin);
-width: 25vmin;
-text-align: center;
-opacity: 0;
-transition: 0.3s opacity;
-}
-
-.finalize-waiting .finalize-container {
-opacity: 1;
-}
-
-#finalizeText {
-color: white;
-font-family: 'Nunito', sans-serif;
-color: white;
-font-size: 3.5vmin;
-margin-bottom: 0.5vmin;
-font-style: italic;
-}
-
-#finalizeProgressBar {
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
-background:  #B5B8D0;
-border-radius: 0.75vmin;
-overflow: hidden;
-width: 100%;
-height: 1.5vmin;
-display: block;
-}
-
-#finalizeProgressBar::-webkit-progress-bar {
-background: #B5B8D0;
-border-radius: 0.75vmin;
-}
-
-#finalizeProgressBar::-webkit-progress-value {
-border-radius: 0.75vmin;
-background: white;
-transition: 2s width;
-}
-
-#finalizeProgressBar::-moz-progress-bar {
-border-radius: 0.75vmin;
-background: white;
-}
-</style><style>.recorder-container {
-position: fixed;
-width: 25vmin;
-height: 25vmin;
-max-width: 10em;
-max-height: 10em;
-bottom: 3vmin;
-left: 50%;
-transform: translateX(-50%);
-z-index: 20;
-transition: 0.5s opacity;
-}
-
-#recorder-button {
-display: block;
-border: none;
-outline: none;
-margin: 0;
-padding: 0;
-box-shadow: none;
-position: absolute;
-background: white;
-border-radius: 50%;
-color: transparent;
-top: 0;
-left: 0;
-transform-origin: 50% 50%;
-transform: scale(0.6);
-transition: 0.3s border-radius, 0.3s transform;
-width: 100%;
-height: 100%;
-}
-
-.progress-container {
-display: block;
-position: absolute;
-top:0;
-left: 0;
-width: 100%;
-height: 100%;
-transform: scale(0.9);
-transition: 0.3s transform, 0.3s opacity;
-}
-
-.progress-track, .progress-bar, .loading-circle {
-fill: transparent;
-stroke-width: 3;
-}
-
-.progress-track {
-stroke: white;
-}
-
-.progress-bar {
-opacity: 0;
-transition: 0;
-transform-origin: 50% 50%;
-stroke: white;
-transform: rotate(-90deg);
-stroke-dasharray: 100.531 100.531;
-stroke-dashoffset: 100;
-}
-
-.recording .progress-container, .loading .progress-container {
-opacity: 1;
-transform: scale(1);
-}
-
-.recording .progress-track, .loading .progress-track {
-transition: 0.8s stroke;
-stroke: #fff5;
-}
-
-.recording .progress-bar {
-opacity: 1;
-}
-
-.active #recorder-button {
-transform: scale(0.5);
-}
-
-.active:not(.fixed-mode) #recorder-button {
-background: #fff5;
-}
-
-.fixed-mode #recorder-button {
-border-radius: 15%;
-transform: scale(0.42);
-}
-
-.flash-element {
-position: fixed;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-background-color: white;
-opacity: 0;
-transition: 0.6s opacity;
-pointer-events: none;
-z-index: 40;
-}
-
-.flash-element.flashing {
-transition: 0s opacity;
-opacity: 1;
-pointer-events: auto;
-z-index: 100;
-}
-
-.loading-circle {
-stroke-dasharray: 25 25 25 25;
-stroke-dashoffset: 0;
-stroke: white;
-opacity: 0;
-transform-origin: 50% 50%;
-}
-
-@keyframes record-button-spin {
-0% {
-transform: rotate(-90deg);
-}
-100% {
-  transform: rotate(270deg);
-}
-}
-
-.loading .loading-circle {
-animation: record-button-spin 1.1s linear infinite both;
-opacity: 1;
-}
-
-.fade-container {
-opacity: 0;
-pointer-events: none;
-}
-</style><style>* {
-font-family: inherit;
-box-sizing: inherit;
-}
-
-.absolute-fill {
-position: absolute;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-}
-
-.hidden {
-display: none !important;
-}
-
-.error-text-outer-container {
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.error-text-container {
-flex: 0 0 auto;
-text-align: center;
-width: 100%;
-}
-
-.error-text-header {
-font-family: 'Nunito', sans-serif;
-font-size: 16pt;
-color: white;
-letter-spacing: .37;
-line-height: 23pt;
-}
-
-.xrextras-old-style .error-text-header {
-color: #323232;
-}
-
-.error-text-hint {
-font-family: 'Nunito', sans-serif;
-font-size: 14pt;
-color: #A8A8BA;
-letter-spacing: .37;
-}
-
-.error-text-detail {
-font-family: 'Nunito', sans-serif;
-font-size: 14pt;
-color: white;
-}
-
-.xrextras-old-style .error-text-detail {
-color: #323232;
-}
-
-.error-margin-top-5 {
-margin-top: 5vh;
-}
-
-.error-margin-top-20 {
-margin-top: 20vh;
-}
-
-.desktop-home-link {
-font-family: 'Nunito-SemiBold', sans-serif;
-padding-top: 5px;
-padding-bottom: 5px;
-padding-left: 10px;
-padding-right: 10px;
-border-radius: 10px;
-color: white;
-background-color: #464766;
--webkit-user-select: all;
-/* Chrome 49+ */
--moz-user-select: all;
-/* Firefox 43+ */
--ms-user-select: all;
-/* No support yet */
-user-select: all;
-pointer-events: auto;
-}
-
-.xrextras-old-style .desktop-home-link {
-color: #323232;
-background-color:rgba(173, 80, 255, 0.2);
-}
-
-.desktop-home-link.mobile {
-position: fixed;
-width: 100vw;
-font-size: 1.1em;
-font-weight: 800;
-border-radius: 0px;
-bottom: 30%;
-left: 50%;
-transform: translateX(-50%);
-}
-
-.xrextras-old-style .foreground-image {
-filter: invert(1);
-}
-</style>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
     
-    <!-- Copyright (c) 2020 8th Wall, Inc. -->
-
-<meta name="8thwall:renderer" content="aframe:1.1.0">
-<meta name="8thwall:package" content="@8thwall.xrextras">
-
-<!-- Other external scripts and meta tags can also be added. -->
-<script src="//cdn.8thwall.com/web/aframe/ammo.wasm.js"></script>
-<script src="//cdn.8thwall.com/web/aframe/aframe-physics-system-4.0.1.min.js"></script>
-
+    <script>
+      // WebXR requires HTTPS, so the site doesn't work if someone manually enters
+      // the URL and ends up using HTTP. To work around this, force redirect from
+      // http to https for non-localhost addresses.
+      if (window.location.protocol == "http:" &&
+          window.location.hostname != "localhost" && 
+          window.location.hostname != "127.0.0.1" &&
+          window.location.hostname != "[::1]") {
+        window.location = window.location.href.replace('http:', 'https:');        
+      }
+    </script>    
     
-  <script crossorigin="anonymous" src="https://cdn.8thwall.com/xr-simd-27.0.2.427.js" async="true"></script><style type="text/css">
-@font-face {
-font-weight: 400;
-font-style:  normal;
-font-family: circular;
+    <!-- import the webpage's javascript files -->
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <!-- Other external scripts and meta tags can also be added. -->
+    <script src="http://kripken.github.io/ammo.js/builds/ammo.wasm.js"></script> 
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script>
 
-src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Book.woff2') format('woff2');
-}
 
-@font-face {
-font-weight: 700;
-font-style:  normal;
-font-family: circular;
+    <script>
+      // Define a few custom components useful for AR mode. While these are somewhat reusable,
+      // I recommend checking if there are officially supported alternatives before copying
+      // these into new projects.
+    
+      // See also https://github.com/aframevr/aframe/pull/4356
+      AFRAME.registerComponent('hide-in-ar-mode', {
+        // Set this object invisible while in AR mode.
+        init: function () {
+          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+            this.wasVisible = this.el.getAttribute('visible');
+            if (this.el.sceneEl.is('ar-mode')) {
+              this.el.setAttribute('visible', false);
+            }
+          });
+          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+            if (this.wasVisible) this.el.setAttribute('visible', true);
+          });
+        }
+      });
 
-src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
-}</style><script async="" src="/falling-apples/dist_0e9d78ffafb138e9639f024f5cfbcd735523bb77-8665de51f057d6f5e00bc4ea3888f42e_bundle.js"></script></head>
+      import {selfDestructComponent, dropObjectComponent} from './components'
+      AFRAME.registerComponent('self-destruct', selfDestructComponent)
+      AFRAME.registerComponent('drop-object', dropObjectComponent)
+      
+      AFRAME.registerComponent('ar-shadows', {
+        // Swap an object's material to a transparent shadows-only material while
+        // in AR mode. Intended for use with a ground plane. The object is also
+        // set visible while in AR mode, this is useful if it's hidden in other
+        // modes due to them using a 3D environment.
+        schema: {
+          opacity: {default: 0.3}
+        },
+        init: function () {
+          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+            this.wasVisible = this.el.getAttribute('visible');
+            if (this.el.sceneEl.is('ar-mode')) {
+              this.savedMaterial = this.el.object3D.children[0].material;
+              this.el.object3D.children[0].material = new THREE.ShadowMaterial();
+              this.el.object3D.children[0].material.opacity = this.data.opacity;
+              this.el.setAttribute('visible', true);
+            }
+          });
+          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+            if (this.savedMaterial) {
+              this.el.object3D.children[0].material = this.savedMaterial;
+              this.savedMaterial = null;
+            }
+            if (!this.wasVisible) this.el.setAttribute('visible', false);
+          });
+        }
+      });    
+  </script>
+  </head>  
   <body>
-     
-   
-<div id="loom-companion-mv3" ext-id="liecbddmkiiihnedobmlmillhodjkdmb"><section id="shadow-host-companion"></section></div><div class="calendly-opti-root calendly-lifecycle-optibutton_singleton"></div><div class="calendly-frame-tag" manager_id="e6084ee8-b21a-4de5-b915-6c8cf4f9267a" id="e6084ee8-b21a-4de5-b915-6c8cf4f9267a" style="height: 0px; width: 0px; visibility: hidden;"></div><!-- Copyright (c) 2020 8th Wall, Inc. -->
+<!-- Copyright (c) 2020 8th Wall, Inc. -->
 
-<a-scene drop-object="" physics="driver: ammo; debug: true; debugDrawMode: 64;" xrextras-almost-there="" xrextras-loading="" xrextras-runtime-error="" xrface="mirroredDisplay: true; cameraDirection: front; allowedDevices: any" inspector="" keyboard-shortcuts="" screenshot="" xrconfig="">
+  <a-scene 
+    drop-object
+    physics="driver: ammo; debug: true; debugDrawMode: 64;"
+    xrextras-almost-there
+    xrextras-loading
+    xrextras-runtime-error
+    xrface="mirroredDisplay: true; cameraDirection: front; allowedDevices: any">
+  
+    <!-- Assets block loading of the scene until they are fetched. -->
+    <a-assets>
+      <a-asset-item id="apple" src="./assets/Models/apple.glb"></a-asset-item>
+      <a-asset-item id="head-occluder" src="./assets/Models/head-occluder.glb"></a-asset-item>
+    </a-assets>
+    
+    <a-camera position="0 1 2"></a-camera>
+    
+    <xrextras-faceanchor>
+      <a-entity 
+        gltf-model="#head-occluder"
+        xrextras-hider-material
+        position="0 0 0.25" 
+        scale="1.2 1.1 1.35" 
+        rotation="-6 0 0">
+        <a-entity 
+          position="0 0.3 -0.1"
+          ammo-body="type: static" 
+          ammo-shape="type: sphere; fit: manual; sphereRadius: 0.11"></a-entity>
+      </a-entity>
+      <xrextras-face-mesh xrextras-hider-material></xrextras-face-mesh>
+    </xrextras-faceanchor>
+    
+    <a-light type="directional" target="#face" position="0 1.8 3" intensity="0.8"></a-light>
+    <a-light type="ambient" intensity="0.5"></a-light>
+    
+  </a-scene>
 
-<!-- Assets block loading of the scene until they are fetched. -->
-<a-assets>
-  <a-asset-item id="apple" src="/falling-apples/assets/apple-1gh8e8.glb"></a-asset-item>
-  <a-asset-item id="head-occluder" src="/falling-apples/assets/head-occluder-vtz6wps.glb"></a-asset-item>
-</a-assets>
+    <div id="text">
+      <h1>Falling Apples</h1>
+    
+      <p>
+        Model: <a href="https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7">Spinosaurus</a> by 
+        <a href="https://sketchfab.com/VapTor">Vaptor-Studio</a>.
+      </p>
+      <p>
+        Size: <button id="btn_full">Full</button>
+        <button id="btn_half">1/2</button>
+        <button id="btn_quarter">1/4</button>
+      </p>
+      
+      <p>
+        This requires browser support for WebXR's AR mode, for example an
+        <a href="https://developers.google.com/ar/discover/supported-devices">ARCore-compatible</a>
+        Android phone with Chrome version 81 or higher.
+      </p>
+      
+      <p>
+        Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
+      </p>
+    </div>
 
-<a-camera position="0 1 2" camera="" rotation=""></a-camera>
+    <script> 
+      document.getElementById('btn_full').onclick = setSize.bind(this, 1);
+      document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
+      document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.25);
+    </script>
 
-<xrextras-faceanchor xrextras-faceanchor="">
-  <a-entity gltf-model="#head-occluder" xrextras-hider-material="" position="0 0 0.25" scale="1.2 1.1 1.35" rotation="-6 0 0">
-    <a-entity position="0 0.3 -0.1" ammo-body="type: static" ammo-shape="type: sphere; fit: manual; sphereRadius: 0.11"></a-entity>
-  </a-entity>
-  <xrextras-face-mesh xrextras-hider-material="" xrextras-face-mesh=""></xrextras-face-mesh>
-</xrextras-faceanchor>
-
-<a-light type="directional" target="#face" position="0 1.8 3" intensity="0.8" light=""></a-light>
-<a-light type="ambient" intensity="0.5" light=""></a-light>
-
-<canvas class="a-canvas a-grab-cursor" data-aframe-canvas="true" width="993" height="868" style="width: 795px; height: 695px;"></canvas>
-        
-      <video width="1" height="1" autoplay="true" muted="true" style="display: none;"></video>
-        <a-entity position="0.027158327400684357 1.891914963722229 1.5315425395965576" self-destruct="" scale="0.1 0.1 0.1" gltf-model="#apple" ammo-body="type: dynamic" ammo-shape="type: sphere; fit: manual; sphereRadius: 0.07;"></a-entity>
-      </a-scene>
-</body></html>
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
