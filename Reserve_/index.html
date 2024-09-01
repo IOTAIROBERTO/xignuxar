@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Apple Raining</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    
+    <script>
+      // WebXR requires HTTPS, so the site doesn't work if someone manually enters
+      // the URL and ends up using HTTP. To work around this, force redirect from
+      // http to https for non-localhost addresses.
+      if (window.location.protocol == "http:" &&
+          window.location.hostname != "localhost" && 
+          window.location.hostname != "127.0.0.1" &&
+          window.location.hostname != "[::1]") {
+        window.location = window.location.href.replace('http:', 'https:');        
+      }
+    </script>    
+    
+    <!-- import the webpage's javascript files -->
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <!-- Other external scripts and meta tags can also be added. -->
+    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script> 
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script> 
+    <script>
+      // Define a few custom components useful for AR mode. While these are somewhat reusable,
+      // I recommend checking if there are officially supported alternatives before copying
+      // these into new projects.
+    
+      // See also https://github.com/aframevr/aframe/pull/4356
+      AFRAME.registerComponent('hide-in-ar-mode', {
+        // Set this object invisible while in AR mode.
+        init: function () {
+          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+            this.wasVisible = this.el.getAttribute('visible');
+            if (this.el.sceneEl.is('ar-mode')) {
+              this.el.setAttribute('visible', false);
+            }
+          });
+          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+            if (this.wasVisible) this.el.setAttribute('visible', true);
+          });
+        }
+      });
+ 
+      AFRAME.registerComponent('ar-shadows', {
+        // Swap an object's material to a transparent shadows-only material while
+        // in AR mode. Intended for use with a ground plane. The object is also
+        // set visible while in AR mode, this is useful if it's hidden in other
+        // modes due to them using a 3D environment.
+        schema: {
+          opacity: {default: 0.3}
+        },
+        init: function () {
+          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+            this.wasVisible = this.el.getAttribute('visible');
+            if (this.el.sceneEl.is('ar-mode')) {
+              this.savedMaterial = this.el.object3D.children[0].material;
+              this.el.object3D.children[0].material = new THREE.ShadowMaterial();
+              this.el.object3D.children[0].material.opacity = this.data.opacity;
+              this.el.setAttribute('visible', true);
+            }
+          });
+          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+            if (this.savedMaterial) {
+              this.el.object3D.children[0].material = this.savedMaterial;
+              this.savedMaterial = null;
+            }
+            if (!this.wasVisible) this.el.setAttribute('visible', false);
+          });
+        }
+      });    
+      
+      AFRAME.registerComponent('self-destruct', {
+        init: function () {
+          const selfDestructComponent = {
+            init() {
+              setTimeout(() => {
+                this.el.parentNode.removeChild(this.el)
+              }, 2000)
+            },
+          }
+        }
+      }); 
+
+      AFRAME.registerComponent('drop-object', {
+          init: function () {
+            const dropObjectComponent = {
+              init() {
+                const head = document.querySelector('xrextras-faceanchor')
+
+                setInterval(() => {
+                  const headPos = head.object3D.position
+
+                  this.el.insertAdjacentHTML('beforeend',
+                    `
+                      <a-entity 
+                      position="${headPos.x} ${headPos.y + 1} ${headPos.z}"
+                      self-destruct
+                      scale="0.1 0.1 0.1"
+                      
+                      gltf-model="#apple"
+                      ammo-body="type: dynamic" 
+                      ammo-shape="type: sphere; fit: manual; sphereRadius: 0.07;"></a-entity>
+                    `)
+                }, 2000)
+              },
+            }
+          }
+        }); 
+
+</script>
+
+
+  </head> 
+
+  <body>
+<!-- Copyright (c) 2020 8th Wall, Inc. -->
+
+  <a-scene 
+    drop-object
+    physics="driver: ammo; debug: true; debugDrawMode: 64;"
+    xrextras-almost-there
+    xrextras-loading
+    xrextras-runtime-error
+    xrface="mirroredDisplay: true; cameraDirection: front; allowedDevices: any">
+  
+    <!-- Assets block loading of the scene until they are fetched. -->
+    <a-assets>
+      <a-asset-item id="apple" src="./assets/Models/apple.glb"></a-asset-item>
+      <a-asset-item id="head-occluder" src="./assets/Models/head-occluder.glb"></a-asset-item> 
+    </a-assets>
+    
+    <a-camera position="0 1 2"></a-camera>
+    
+    <xrextras-faceanchor>
+      <a-entity 
+        gltf-model="#head-occluder"
+        xrextras-hider-material
+        position="0 0 0.25" 
+        scale="1.2 1.1 1.35" 
+        rotation="-6 0 0">
+        <a-entity 
+          position="0 0.3 -0.1"
+          ammo-body="type: static" 
+          ammo-shape="type: sphere; fit: manual; sphereRadius: 0.11"></a-entity>
+      </a-entity>
+      <xrextras-face-mesh xrextras-hider-material></xrextras-face-mesh>
+    </xrextras-faceanchor>
+    
+    <a-light type="directional" target="#face" position="0 1.8 3" intensity="0.8"></a-light>
+    <a-light type="ambient" intensity="0.5"></a-light>
+    
+  </a-scene>
+
+    <div id="text">
+      <h1>Falling Apples</h1> 
+      
+      <p>
+        This requires browser support for WebXR's AR mode, for example an
+        <a href="https://developers.google.com/ar/discover/supported-devices">ARCore-compatible</a>
+        Android phone with Chrome version 81 or higher.
+      </p>
+      
+      <p>
+        Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
+      </p>
+    </div> 
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
